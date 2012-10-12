@@ -14,3 +14,7 @@ Sample Usage
 	String html = htmlFetcher.getHtml("url",socketTimeOut);
 	
 	By default the socket time out parameter is 10000 , if you dont provide it.
+	
+	or in command prompt
+	
+	MAVEN_OPTS="-Xms256m -Xmx1026m" mvn exec:java -Dexec.mainClass=com.sree.textbytes.network.SampleFetcher
