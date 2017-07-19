@@ -21,6 +21,8 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User: sree
@@ -38,6 +40,18 @@ public class HtmlFetcher {
     private static String modTime = null;
     boolean absSet = false;
     private String encodingType = null;
+    private static Map<String,String> requestHeaders = new HashMap<String, String>(){
+        {
+            put("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+            put("Accept-Encoding","gzip, deflate, br");
+            put("Accept-Language","en-US,en;q=0.8,zh-CN;q=0.6,zh;q=0.4");
+            put("Cache-Control","no-cache");
+            put("Connection","keep-alive");
+            put("User-Agent","Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.11 Safari/537.36");
+
+        }
+
+    };
     /**
      * holds the HttpClient object for making requests
      */
@@ -84,7 +98,9 @@ public class HtmlFetcher {
         try {
             url = CanonicalizeURL.escapeIllegalURLCharacters(url);
             httpget = new HttpGet(url);
-
+            for (String key : requestHeaders.keySet()) {
+                httpget.setHeader(key,requestHeaders.get(key));
+            }
             if (modTime != null) {
                 httpget.setHeader("If-Modified-Since", modTime);
             }
