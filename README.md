@@ -1,3 +1,12 @@
+## 更细日志-by HiJack
+2017.7.19 
+
+ 	 1.自动识别网页编码
+  
+ 	 2.添加httpRequestHeaders,以通过部分网站访问过滤	 
+	 
+------------------------------------------------------------------
+## 原始说明
 This is a bundle of utilities , that can be used for Java Network calls.
 
 This bundle includes 
